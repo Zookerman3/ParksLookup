@@ -5,12 +5,14 @@ namespace ParksLookupApi.Models
     public class ParksLookupApiContext : DbContext
     {
         public DbSet<Park> Parks { get; set; }
+        public DbSet<User> Users { get; set; }
+
 
         public ParksLookupApiContext(DbContextOptions<ParksLookupApiContext> options) : base(options)
         {
         }
 
-         protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Park>()
                     .HasData(
@@ -20,6 +22,12 @@ namespace ParksLookupApi.Models
                 new Park { ParkId = 4, Name = "Zion", State = "Utah" },
                 new Park { ParkId = 5, Name = "Denali", State = "Alaska" }
                 );
+
+            builder.Entity<User>()
+                    .HasKey(u => u.UserId);
+            builder.Entity<User>()
+                        .HasData(
+                    new User { UserId = "admin", Name = "JoeMama", Password = "password" });
         }
     }
 }
