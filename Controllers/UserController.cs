@@ -54,6 +54,5 @@ namespace TravelApi.Controllers
             return Ok(finalToken);
 
         }
-
     }
 }
