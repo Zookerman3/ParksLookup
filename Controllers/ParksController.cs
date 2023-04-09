@@ -21,7 +21,7 @@ namespace ParksLookupApi.Controllers
         [HttpGet]
         public async Task<List<Park>> Get(string name, string state)
         {
-            IQueryable<Park> query = _db.Parks.AsQueryable();
+            IQueryable<Park> query = _db.Parks.Include(park => park.Reviews).AsQueryable();
 
             if (name != null)
             {
@@ -50,7 +50,7 @@ namespace ParksLookupApi.Controllers
             return park;
         }
 
-        // POST api/animals
+        // POST api/parks
         [HttpPost]
         public async Task<ActionResult<Park>> Post([FromBody] Park park)
         {

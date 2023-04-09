@@ -12,5 +12,6 @@ namespace ParksLookupApi.Models
         public string Name { get; set; }
         [Required]
         public string State { get; set; }
+        public virtual List<Review> Reviews { get; set; }
     }
 }
